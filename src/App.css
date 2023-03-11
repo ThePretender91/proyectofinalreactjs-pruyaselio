@@ -1,0 +1,178 @@
+body {
+  background-color: lightgray;
+}
+
+.iconoPagina a img {
+  width: 100px;
+  height: 100px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: gray;
+  padding: 15px;
+}
+
+.secciones {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.itemSecciones {
+  margin-right: 25px;
+}
+
+.navLink {
+  font-size: 30px;
+  color: black;
+  text-decoration: none;
+}
+
+.navLink.active {
+  font-size: 30px;
+  color: black;
+  text-decoration: underline;
+}
+
+.carrito img {
+  width: 50px;
+  height: 50px;
+}
+
+.cantidadCarrito{
+  font-size: 30px;
+}
+
+.contenedorItems {
+  margin: 5px 0px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly; 
+}
+
+.cardItem {
+  background-color: white;
+  border: 1px solid darkgray;
+  padding: 5px;
+  margin: 15px 5px;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  line-height: 1.5;
+}
+
+.cardItem img {
+  width: auto;
+  height: 200px;
+  object-fit: fill;
+}
+
+.cardItem div {
+  text-align: center;
+  padding: 10px;
+}
+
+.cardItem p {
+  font-size: larger;
+  margin: 10px 0;
+  text-align: center;
+  padding: 0;
+}
+
+.cardItem p:nth-last-of-type(1) {
+  color: red;
+  font-size: x-large;
+}
+
+.cardItem div:nth-last-of-type(1){
+  font-size:larger;
+  background-color: red;
+  color: white;
+  padding: 10px 40px;
+  margin: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.cardItem p:nth-child(2) {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.contenedorGeneralDetalles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.contenedorDetallesProducto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 800px;
+  height: 600px;
+  background-color: white;
+}
+
+.contenedorDetallesProducto div:nth-last-of-type(1){
+  padding: 5px;
+  margin: 5px;
+}
+
+.contenedorDetallesProducto div {
+  padding: 10px 20px;
+}
+
+.contenedorDetallesProducto p {
+  font-size: large;
+  font-weight: bold;
+}
+
+.contenedorDetallesProducto img {
+  width: auto;
+  height: 350px;
+  object-fit: fill;
+}
+
+.contenedorContador {
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center; 
+}
+
+.contenedorContador p {
+  margin: 0px 10px;
+}
+
+.botonContador:hover {
+  cursor: pointer;
+}
+
+.contenedorBotonDetalles {
+  display: flex;
+  justify-content: right;
+  margin: 10px;
+}
+
+.contenedorBotonDetalles button {
+padding: 10px 25px;
+margin: 10px 0;
+}
