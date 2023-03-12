@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import ItemCount from '../ItemCount/ItemCount'
 
 const ItemDetailContainer = () => {
   const {id} = useParams();
   const [productos, setProductos] = useState([]);
+  const [mostrar, setMostrar] = useState();
 
   useEffect(() => {
     fetch('/data/productos.json')
@@ -20,26 +21,27 @@ const ItemDetailContainer = () => {
       .then((res) => setProductos(res));
   }, []);
 
+  const onAddHandler= (cantidad) => setMostrar(cantidad);
   
   return (
-  <>
-    {productos.length === 0 ? (
-      <p>Cargando Detalles de Producto, por favor espere...</p>
+  <>  
+  {productos.length === 0 ? (
+    <p>Cargando Detalles de Producto, por favor espere...</p>
     ) : (
-      <div className='contenedorGeneralDetalles'>
-        {productos.filter((item) => item.id === parseInt(id)).map((item) => (
-        <div className='contenedorDetallesProducto' key={item.id}>
-          <div><img src={item.imagen} alt={item.nombre} /></div>
-          <div>
-            <p>Nombre: {item.nombre}</p>
-            <p>Detalles: {item.descripcion}</p>
-            <p>Precio: {item.precio.toLocaleString("es-AR")}</p>
-            <ItemCount stock={item.stock}/>
-            <div className='contenedorBotonDetalles'><button>Agregar al Carrito</button></div>
-          </div>
+    <div className='contenedorGeneralDetalles'>
+      {productos.filter((item) => item.id === parseInt(id)).map((item) => (
+      <div className='contenedorDetallesProducto' key={item.id}>
+        <div><img src={item.imagen} alt={item.nombre} /></div>
+        <div>
+          <p>Nombre: {item.nombre}</p>
+          <p>Detalles: {item.descripcion}</p>
+          <p>Precio: {item.precio.toLocaleString("es-AR")}</p>
+          {mostrar ? (<div className='contenedorBotonDetalles'><Link to={'/Cart/'}><button>Ir a Carrito</button></Link></div>
+          ) : (<ItemCount onAdd={onAddHandler} stock={item.stock}/>)}
         </div>
-        ))}
       </div>
+      ))}
+    </div>
     )}
   </>
   );
