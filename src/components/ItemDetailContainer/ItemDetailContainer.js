@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import ItemCount from '../ItemCount/ItemCount'
+import { cartContext } from '../../contexts/cartContext';
 
 const ItemDetailContainer = () => {
   const {id} = useParams();
   const [productos, setProductos] = useState([]);
   const [mostrar, setMostrar] = useState();
+  const {transaccion, setCantTotal} = useContext(cartContext);
 
   useEffect(() => {
     fetch('/data/productos.json')
@@ -21,7 +23,17 @@ const ItemDetailContainer = () => {
       .then((res) => setProductos(res));
   }, []);
 
-  const onAddHandler= (cantidad) => setMostrar(cantidad);
+  const onAddCountHandler = (cantidad, item) => {
+    setMostrar(cantidad);
+    const newItem = {
+      nombre: item.nombre,
+      precio: item.precio,
+      cantidad: cantidad
+    };
+    transaccion.push(newItem);
+    setCantTotal(transaccion.length);
+  };
+  
   
   return (
   <>  
@@ -37,7 +49,7 @@ const ItemDetailContainer = () => {
           <p>Detalles: {item.descripcion}</p>
           <p>Precio: {item.precio.toLocaleString("es-AR")}</p>
           {mostrar ? (<div className='contenedorBotonDetalles'><Link to={'/Cart/'}><button>Ir a Carrito</button></Link></div>
-          ) : (<ItemCount onAdd={onAddHandler} stock={item.stock}/>)}
+          ) : (<ItemCount onAdd={(cantidad) => onAddCountHandler(cantidad, item)} stock={item.stock}/>)}
         </div>
       </div>
       ))}

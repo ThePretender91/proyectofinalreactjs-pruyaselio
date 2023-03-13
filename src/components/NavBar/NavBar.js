@@ -21,7 +21,7 @@ const Navbar = () => {
           <NavLink to="/Category/Televisores" className="navLink"> Televisores </NavLink>
         </li>
         <CartWidget />
-    </ul>        
+      </ul>
    </nav>
     </>
   );

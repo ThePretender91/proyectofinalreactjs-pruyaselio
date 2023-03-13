@@ -43,8 +43,10 @@ body {
   height: 50px;
 }
 
-.cantidadCarrito{
+.infoCarrito{
   font-size: 30px;
+  color: black;
+  text-decoration: none;
 }
 
 .contenedorItems {
