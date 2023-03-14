@@ -8,7 +8,7 @@ const ItemDetailContainer = () => {
   const {id} = useParams();
   const [productos, setProductos] = useState([]);
   const [mostrar, setMostrar] = useState();
-  const {transaccion, setCantTotal} = useContext(cartContext);
+  const {addItem, setCantTotal} = useContext(cartContext);
 
   useEffect(() => {
     fetch('/data/productos.json')
@@ -25,13 +25,8 @@ const ItemDetailContainer = () => {
 
   const onAddCountHandler = (cantidad, item) => {
     setMostrar(cantidad);
-    const newItem = {
-      nombre: item.nombre,
-      precio: item.precio,
-      cantidad: cantidad
-    };
-    transaccion.push(newItem);
-    setCantTotal(transaccion.length);
+    addItem(item, cantidad);
+    setCantTotal(prevCant => prevCant + cantidad);
   };
   
   
