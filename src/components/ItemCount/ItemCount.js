@@ -22,9 +22,9 @@ const ItemCount = ({ onAdd, stock }) => {
   return (
     <>
       <div className='contenedorContador'>
-        <p className='botonContador' onClick={onClickSumarhandler}>🔼</p>
+        <p className='botonContador clickeable' onClick={onClickSumarhandler}>🔼</p>
         <p>{contar}</p>
-        <p className='botonContador' onClick={onClickRestarhandler}>🔽</p>
+        <p className='botonContador clickeable' onClick={onClickRestarhandler}>🔽</p>
       </div>
       <div className='contenedorBotonDetalles'><button onClick={onAddCountHandler}>Agregar al Carrito</button></div>
     </>

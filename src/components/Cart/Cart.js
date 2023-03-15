@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { cartContext } from '../../contexts/cartContext';
 
 import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import Swal from 'sweetalert2';
 
 const formBase = {
     name: '',
@@ -13,8 +14,7 @@ const formBase = {
 const Cart = () => {
     const { transaccion, clear, removeItem } = useContext(cartContext);
     const [form, setForm] = useState(formBase);
-    const [total, setTotal] = useState(0);
-    const [idTransaccion, setIdtransaccion] = useState("");
+    const [total, setTotal] = useState(0);    
 
     useEffect(() => {
         const newTotal = transaccion.reduce((acc, item) => acc + item.cantidad * item.precio, 0);
@@ -47,9 +47,18 @@ const Cart = () => {
         const ordersCollection = collection(db, 'orders');
         addDoc(ordersCollection, order)
             .then((docRef) => {
-                setIdtransaccion(docRef.id);
                 setForm(formBase);
                 clear();
+                
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Se ha procesado su pedido',
+                    text: `El ID de la transaccion es: ${docRef.id}`,
+                    showConfirmButton: true,
+                    allowEscapeKey: false,
+                    allowOutsideClick: false
+                });
             })
     };
 
@@ -61,10 +70,7 @@ const Cart = () => {
     return (
         <div className="cart-container">
           {transaccion.length === 0 ? (
-            <div>
             <p>El carrito está vacío</p>
-            <p>{idTransaccion}</p>
-            </div>
           ) : (
             <div className="cart-items-container">
               <div className="cart-buttons-container">

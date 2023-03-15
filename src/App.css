@@ -164,10 +164,6 @@ body {
   margin: 0px 10px;
 }
 
-.botonContador:hover {
-  cursor: pointer;
-}
-
 .contenedorBotonDetalles {
   display: flex;
   justify-content: right;
