@@ -7,7 +7,6 @@ const CartProvider = ({children}) => {
     const [cantTotal, setCantTotal] = useState(0);
 
     useEffect(() => {
-      //setCantTotal(transaccion.length);
       setCantTotal(transaccion.reduce((acc, item) => acc + item.cantidad, 0));
     }, [transaccion]);
 
