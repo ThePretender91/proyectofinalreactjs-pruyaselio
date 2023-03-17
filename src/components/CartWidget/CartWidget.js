@@ -10,7 +10,7 @@ const CartWidget = () => {
     <div className="carrito" key={cantTotal}>
       <Link to={'/Cart/'} className="infoCarrito">
       <img src='https://i.imgur.com/M7TmSbI.png' alt='Icono Carrito' />      
-      <span>{cantTotal}</span>
+      {cantTotal !== 0 ? (<span>{cantTotal}</span>) : (<span></span>)}
       </Link>
     </div>    
   );

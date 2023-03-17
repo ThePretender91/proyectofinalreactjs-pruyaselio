@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { cartContext } from '../../contexts/cartContext';
 
@@ -70,7 +71,10 @@ const Cart = () => {
     return (
         <div className="cart-container">
           {transaccion.length === 0 ? (
-            <p>El carrito está vacío</p>
+            <div className="cart-items-container">
+              <p>El carrito está vacío</p>
+              <span>Para agregar productos, vuelva a <Link to="/"> Home </Link></span>
+            </div>            
           ) : (
             <div className="cart-items-container">
               <div className="cart-buttons-container">
